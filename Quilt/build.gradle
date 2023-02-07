@@ -1,30 +1,12 @@
 plugins {
-	id 'org.quiltmc.loom' version '0.12.+'
+	id 'org.quiltmc.loom' version '1.+'
 	id 'maven-publish'
+    	id 'idea'
+    	id 'com.matthewprenger.cursegradle' version '1.4.0'
+    	id "com.modrinth.minotaur" version "2.+"
 }
 
 archivesBaseName = "${mod_name}-quilt-${minecraft_version}"
-
-repositories {
-
-	maven {
-		name 'Quilt (Release)'
-		url 'https://maven.quiltmc.org/repository/release/'
-	}
-
-	maven {
-		name 'Quilt (Snapshot)'
-		url 'https://maven.quiltmc.org/repository/snapshot/'
-		content {
-			includeGroup 'org.quiltmc.fabric_api_qsl'
-			includeGroupByRegex 'org\\.quiltmc\\.qsl(?:\\.[a-z_]+)?'
-		}
-	}
-}
-
-configurations {
-	testCompileOnly.extendsFrom(compileOnly)
-}
 
 dependencies {
 
@@ -38,22 +20,16 @@ dependencies {
 	modImplementation("org.quiltmc:qsl:${quilt_stdlib_version}") {
 		exclude group: "net.fabricmc"
 	}
-
 	modImplementation("org.quiltmc.quilted-fabric-api:quilted-fabric-api:${quilted_fabric_api}") {
 		exclude group: "org.quiltmc", module:" qsl"
 	}
-
 	compileOnly project(":Common")
-
 	compileOnly group:'com.google.auto.service', name:'auto-service', version:'1.0.1'
 	annotationProcessor group:'com.google.auto.service', name:'auto-service', version:'1.0.1'
-
-    modImplementation "software.bernie.geckolib:geckolib-quilt-1.19.3:${geckolib_version_quilt}"
 }
 
 loom {
-
-    //accessWidenerPath = file("src/main/resources/${mod_id}.accessWidener")
+        accessWidenerPath = file("${project(':Common').projectDir.path}/src/main/resources/${mod_id}_common.accesswidener")
 	runs {
 		client {
 			client()
@@ -68,6 +44,9 @@ loom {
 			runDir("runServer")
 		}
 	}
+        mixin {
+        	defaultRefmapName = "${mod_id}.refmap.json"
+        }
 }
 
 processResources {
@@ -83,8 +62,56 @@ tasks.withType(JavaCompile) {
     source(project(":Common").sourceSets.main.allSource)
 }
 
-jar {
-	from("LICENSE") {
-		rename { "${it}_${mod_name}"}
-	}
+
+if (file('key.properties').exists()) {
+    curseforge {
+
+        def curseProp = new Properties()
+        File secretPropsFile = file("key.properties")
+        curseProp.load(secretPropsFile.newInputStream())
+
+        project {
+            apiKey = curseProp.getProperty('curseKey')
+            id = "395272"
+            releaseType = "release"
+            changelogType = 'text'
+            changelog = file('CHANGELOG.txt')
+            addGameVersion("1.19.3")
+            addGameVersion("Quilt")
+            addGameVersion("Java 17")
+
+            relations {
+                requiredDependency 'qsl'
+            }
+            mainArtifact(remapJar)
+
+            afterEvaluate {
+                uploadTask.dependsOn("remapJar")
+            }
+        }
+        options {
+            //debug = true
+            forgeGradleIntegration = false
+        }
+    }
+}
+
+if (file('key.properties').exists()) {
+    modrinth {
+        def modrinthProp = new Properties()
+        File secretPropsFile = file("key.properties")
+        modrinthProp.load(secretPropsFile.newInputStream())
+
+        token = modrinthProp.getProperty('modrinthKey')
+        projectId = '6Ezzuwck'
+        versionNumber = project.version
+        versionName = 'Quilt 1.19.3'
+        uploadFile = remapJar
+        changelog = rootProject.file("changelog.txt").text
+        gameVersions = ['1.19.3']
+        loaders = ['quilt']
+        dependencies {
+            required.project "qsl"
+        }
+    }
 }
