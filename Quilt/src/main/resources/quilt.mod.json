@@ -1,28 +1,24 @@
 {
   "schema_version": 1,
   "quilt_loader": {
-    "group": "com.example.examplemod",
-    "id": "modid",
+    "group": "mod.azure.tinycoal",
+    "id": "tinycoal",
     "version": "${version}",
     "metadata": {
-      "name": "multiloader",
-      "description": "Description",
+      "name": "Tiny Coal",
+      "description": "Allows you to convert coal or charcoal to Tiny Coal/Charcoal.",
       "contributors": {
-        "Jaredlll0": "Author",
-        "Witixin" : "Contributor"
+        "AzureDoom": "Author"
       },
       "contact": {
-        "sources": "https://github.com/Witixin1512/GeckoLib-MultiLoader-Template"
+        "sources": "https://github.com/AzureDoom/TinyCoalML"
       },
       "icon": "icon.png"
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
       "init": [
-        "com.example.examplemod.ExampleMod"
-      ],
-      "client_init": [
-        "com.example.examplemod.client.ExampleModQuiltClient"
+        "mod.azure.tinycoal.TinyCoalMod"
       ]
     },
     "depends": [
@@ -33,10 +29,6 @@
       {
         "id": "minecraft",
         "versions": ">=1.19.3"
-      },
-      {
-        "id": "geckolib",
-        "versions": ">=4.0.1"
       },
       {
         "id": "quilt_base",
