@@ -25,8 +25,7 @@ apply plugin: 'com.matthewprenger.cursegradle'
 archivesBaseName = "${mod_name}-forge-${minecraft_version}"
 
 minecraft {
-    mappings channel: 'parchment', version: "${parchment_version}-${parchment_minecraft_version}"
-    //mappings channel: 'official', version: "${minecraft_version}"
+    mappings channel: 'official', version: "${minecraft_version}"
     if (project.hasProperty('forge_ats_enabled') && project.findProperty('forge_ats_enabled').toBoolean()) {
         // This location is hardcoded in Forge and can not be changed.
         // https://github.com/MinecraftForge/MinecraftForge/blob/be1698bb1554f9c8fa2f58e32b9ab70bc4385e60/fmlloader/src/main/java/net/minecraftforge/fml/loading/moddiscovery/ModFile.java#L123
@@ -123,6 +122,7 @@ if (file('key.properties').exists()) {
             changelogType = 'text'
             changelog = file('CHANGELOG.txt')
             addGameVersion("1.19.3")
+            addGameVersion("1.19.4")
             addGameVersion("Forge")
             addGameVersion("Java 17")
         }
@@ -138,10 +138,10 @@ if (file('key.properties').exists()) {
         token = modrinthProp.getProperty('modrinthKey')
         projectId = '6Ezzuwck'
         versionNumber = project.version
-        versionName = 'Forge 1.19.3'
+        versionName = 'Forge 1.19.3/1.19.4'
         uploadFile = jar
         changelog = rootProject.file("changelog.txt").text
-        gameVersions = ['1.19.3']
+        gameVersions = ['1.19.3', '1.19.4']
         loaders = ['forge']
     }
 }
