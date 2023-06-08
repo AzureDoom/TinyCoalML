@@ -3,7 +3,7 @@ package mod.azure.tinycoal;
 import mod.azure.tinycoal.item.TinyCoalItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -25,8 +25,8 @@ public class TinyCoalMod {
         bus.addListener(this::addCreativeTabs);
     }
 
-    public void addCreativeTabs(final CreativeModeTabEvent.BuildContents event) {
-        if (event.getTab() == CreativeModeTabs.INGREDIENTS) {
+    public void addCreativeTabs(final BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(TINY_COAL.get());
             event.accept(TINY_CHARCOAL.get());
         }

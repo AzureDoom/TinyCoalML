@@ -1,3 +1,0 @@
-v.1.1.2
-
-- Adds Turkish Lang Support - Hexasan

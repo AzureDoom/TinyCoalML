@@ -6,7 +6,7 @@ buildscript {
         maven { url = "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '[6.0,6.2)', changing: true
         classpath 'org.parchmentmc:librarian:1.+'
         classpath 'org.spongepowered:mixingradle:0.7.+'
         classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.0'
@@ -121,8 +121,7 @@ if (file('key.properties').exists()) {
             releaseType = "release"
             changelogType = 'text'
             changelog = file('CHANGELOG.txt')
-            addGameVersion("1.19.3")
-            addGameVersion("1.19.4")
+            addGameVersion("1.20")
             addGameVersion("Forge")
             addGameVersion("Java 17")
         }
@@ -138,10 +137,10 @@ if (file('key.properties').exists()) {
         token = modrinthProp.getProperty('modrinthKey')
         projectId = '6Ezzuwck'
         versionNumber = project.version
-        versionName = 'Forge 1.19.3/1.19.4'
+        versionName = 'Forge 1.20'
         uploadFile = jar
         changelog = rootProject.file("changelog.txt").text
-        gameVersions = ['1.19.3', '1.19.4']
+        gameVersions = ['1.20']
         loaders = ['forge']
     }
 }
