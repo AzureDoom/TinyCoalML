@@ -1,3 +1,0 @@
-v.1.1.5
-
-- Adds recipe to craft 8 tiny coal/charcoal back into 1 coal/charcoal item.
