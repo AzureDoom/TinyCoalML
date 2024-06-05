@@ -1,4 +1,4 @@
-package mod.azure.renameme;
+package mod.azure.tinycoal;
 
 import mod.azure.tinycoal.CommonMod;
 import net.minecraft.core.registries.Registries;

@@ -1,4 +1,4 @@
-package mod.azure.renameme;
+package mod.azure.tinycoal;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
