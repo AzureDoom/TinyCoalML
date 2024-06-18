@@ -8,7 +8,7 @@ public class CommonMod {
     public static final Item TINY_COAL = new Item(new Item.Properties());
     public static final Item TINY_CHARCOAL = new Item(new Item.Properties());
 
-    public static final ResourceLocation modResource(String name) {
+    public static ResourceLocation modResource(String name) {
         return new ResourceLocation(MOD_ID, name);
     }
 }
