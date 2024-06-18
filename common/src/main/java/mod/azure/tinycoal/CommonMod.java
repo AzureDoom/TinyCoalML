@@ -9,6 +9,6 @@ public class CommonMod {
     public static final Item TINY_CHARCOAL = new Item(new Item.Properties());
 
     public static ResourceLocation modResource(String name) {
-        return new ResourceLocation(MOD_ID, name);
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
     }
 }
