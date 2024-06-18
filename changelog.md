@@ -1,3 +1,3 @@
-v1.0.0
+v1.0.1
 
-- Updated to 1.20.6 for Fabric/NeoForge now!
+- Updated to 1.21!
