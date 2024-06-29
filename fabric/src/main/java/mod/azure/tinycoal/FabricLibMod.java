@@ -1,5 +1,6 @@
 package mod.azure.tinycoal;
 
+import mod.azure.tinycoal.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -11,13 +12,12 @@ public final class FabricLibMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        Registry.register(BuiltInRegistries.ITEM, CommonMod.modResource("tinycoal"), CommonMod.TINY_COAL);
-        Registry.register(BuiltInRegistries.ITEM, CommonMod.modResource("tinycharcoal"), CommonMod.TINY_CHARCOAL);
+        CommonMod.init();
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register(entries -> {
-            entries.accept(CommonMod.TINY_COAL);
-            entries.accept(CommonMod.TINY_CHARCOAL);
+            entries.accept(ModItems.TINY_COAL.get());
+            entries.accept(ModItems.TINY_CHARCOAL.get());
         });
-        FuelRegistry.INSTANCE.add(CommonMod.TINY_COAL, 200);
-        FuelRegistry.INSTANCE.add(CommonMod.TINY_CHARCOAL, 200);
+        FuelRegistry.INSTANCE.add(ModItems.TINY_COAL.get(), 200);
+        FuelRegistry.INSTANCE.add(ModItems.TINY_CHARCOAL.get(), 200);
     }
 }
