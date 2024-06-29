@@ -1,3 +1,4 @@
-v1.0.1
+v1.0.2
 
-- Updated to 1.21!
+- Fixes broken tag.
+- Rewrite of internals.
