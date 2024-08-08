@@ -1,4 +1,3 @@
-v1.0.2
+v1.0.3
 
-- Fixes broken tag.
-- Rewrite of internals.
+- 1.21.1
